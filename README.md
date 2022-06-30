@@ -53,3 +53,13 @@ Metadata is obtained for cancer type
 Created graphs of exon expression along _PDGFRB_ by:
 - Exon count
 - Ratios
+
+## Citation
+
+Contains session information file for previous files, as well as citations generated for packages:
+- recount3
+- snapcount
+- dplyr
+- reshape2
+- patchwork
+- tidyverse
