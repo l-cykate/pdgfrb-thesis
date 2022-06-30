@@ -1,0 +1,302 @@
+---
+title: "ratio_code_thesis"
+output: html_notebook
+---
+
+
+
+```{r}
+ratgraphs_thesis1 <- tmc_can_exongraphs_thesis[1,]
+ratgraphs_thesis2t23 <- colSums(tmc_can_exongraphs_thesis[c(2:23),])
+thesisratio_1 <- ratgraphs_thesis2t23/ratgraphs_thesis1  
+
+ratgraphs_thesis2 <- colSums(tmc_can_exongraphs_thesis[c(1:2),])
+ratgraphs_thesis3t23 <- colSums(tmc_can_exongraphs_thesis[c(3:23),])
+thesisratio_2 <- ratgraphs_thesis3t23/ratgraphs_thesis2  
+
+ratgraphs_thesis3 <- colSums(tmc_can_exongraphs_thesis[c(1:3),])
+ratgraphs_thesis4t23 <- colSums(tmc_can_exongraphs_thesis[c(4:23),])
+thesisratio_3 <- ratgraphs_thesis4t23/ratgraphs_thesis3 
+
+ratgraphs_thesis4 <- colSums(tmc_can_exongraphs_thesis[c(1:4),])
+ratgraphs_thesis5t23 <- colSums(tmc_can_exongraphs_thesis[c(5:23),])
+thesisratio_4 <- ratgraphs_thesis5t23/ratgraphs_thesis4 
+
+ratgraphs_thesis5 <- colSums(tmc_can_exongraphs_thesis[c(1:5),])
+ratgraphs_thesis6t23 <- colSums(tmc_can_exongraphs_thesis[c(6:23),])
+thesisratio_5 <- ratgraphs_thesis6t23/ratgraphs_thesis5 
+
+ratgraphs_thesis6 <- colSums(tmc_can_exongraphs_thesis[c(1:6),])
+ratgraphs_thesis7t23 <- colSums(tmc_can_exongraphs_thesis[c(7:23),])
+thesisratio_6 <- ratgraphs_thesis7t23/ratgraphs_thesis6 
+
+ratgraphs_thesis7 <- colSums(tmc_can_exongraphs_thesis[c(1:7),])
+ratgraphs_thesis8t23 <- colSums(tmc_can_exongraphs_thesis[c(8:23),])
+thesisratio_7 <- ratgraphs_thesis8t23/ratgraphs_thesis7 
+
+ratgraphs_thesis8 <- colSums(tmc_can_exongraphs_thesis[c(1:8),])
+ratgraphs_thesis9t23 <- colSums(tmc_can_exongraphs_thesis[c(9:23),])
+thesisratio_8 <- ratgraphs_thesis9t23/ratgraphs_thesis8 
+
+ratgraphs_thesis9 <- colSums(tmc_can_exongraphs_thesis[c(1:9),])
+ratgraphs_thesis10t23 <- colSums(tmc_can_exongraphs_thesis[c(10:23),])
+thesisratio_9 <- ratgraphs_thesis10t23/ratgraphs_thesis9 
+
+ratgraphs_thesis10 <- colSums(tmc_can_exongraphs_thesis[c(1:10),])
+ratgraphs_thesis11t23 <- colSums(tmc_can_exongraphs_thesis[c(11:23),])
+thesisratio_10 <- ratgraphs_thesis11t23/ratgraphs_thesis10
+
+ratgraphs_thesis11 <- colSums(tmc_can_exongraphs_thesis[c(1:11),])
+ratgraphs_thesis12t23 <- colSums(tmc_can_exongraphs_thesis[c(12:23),])
+thesisratio_11 <- ratgraphs_thesis12t23/ratgraphs_thesis11
+
+ratgraphs_thesis12 <- colSums(tmc_can_exongraphs_thesis[c(1:12),])
+ratgraphs_thesis13t23 <- colSums(tmc_can_exongraphs_thesis[c(13:23),])
+thesisratio_12 <- ratgraphs_thesis13t23/ratgraphs_thesis12
+
+ratgraphs_thesis13 <- colSums(tmc_can_exongraphs_thesis[c(1:13),])
+ratgraphs_thesis14t23 <- colSums(tmc_can_exongraphs_thesis[c(14:23),])
+thesisratio_13 <- ratgraphs_thesis14t23/ratgraphs_thesis13
+
+ratgraphs_thesis14 <- colSums(tmc_can_exongraphs_thesis[c(1:14),])
+ratgraphs_thesis15t23 <- colSums(tmc_can_exongraphs_thesis[c(15:23),])
+thesisratio_14 <- ratgraphs_thesis15t23/ratgraphs_thesis14
+
+ratgraphs_thesis15 <- colSums(tmc_can_exongraphs_thesis[c(1:15),])
+ratgraphs_thesis16t23 <- colSums(tmc_can_exongraphs_thesis[c(16:23),])
+thesisratio_15 <- ratgraphs_thesis16t23/ratgraphs_thesis15
+
+ratgraphs_thesis16 <- colSums(tmc_can_exongraphs_thesis[c(1:16),])
+ratgraphs_thesis17t23 <- colSums(tmc_can_exongraphs_thesis[c(17:23),])
+thesisratio_16 <- ratgraphs_thesis17t23/ratgraphs_thesis16
+
+ratgraphs_thesis17 <- colSums(tmc_can_exongraphs_thesis[c(1:17),])
+ratgraphs_thesis18t23 <- colSums(tmc_can_exongraphs_thesis[c(18:23),])
+thesisratio_17 <- ratgraphs_thesis18t23/ratgraphs_thesis17
+
+ratgraphs_thesis18 <- colSums(tmc_can_exongraphs_thesis[c(1:18),])
+ratgraphs_thesis19t23 <- colSums(tmc_can_exongraphs_thesis[c(19:23),])
+thesisratio_18 <- ratgraphs_thesis19t23/ratgraphs_thesis18
+
+ratgraphs_thesis19 <- colSums(tmc_can_exongraphs_thesis[c(1:19),])
+ratgraphs_thesis20t23 <- colSums(tmc_can_exongraphs_thesis[c(20:23),])
+thesisratio_19 <- ratgraphs_thesis20t23/ratgraphs_thesis19
+
+ratgraphs_thesis20 <- colSums(tmc_can_exongraphs_thesis[c(1:20),])
+ratgraphs_thesis21t23 <- colSums(tmc_can_exongraphs_thesis[c(21:23),])
+thesisratio_20 <- ratgraphs_thesis21t23/ratgraphs_thesis20
+
+ratgraphs_thesis21 <- colSums(tmc_can_exongraphs_thesis[c(1:21),])
+ratgraphs_thesis22t23 <- colSums(tmc_can_exongraphs_thesis[c(22:23),])
+thesisratio_21 <- ratgraphs_thesis22t23/ratgraphs_thesis21
+
+ratgraphs_thesis22 <- colSums(tmc_can_exongraphs_thesis[c(1:22),])
+ratgraphs_thesis23t23 <- tmc_can_exongraphs_thesis[23,]
+thesisratio_22 <- ratgraphs_thesis23t23/ratgraphs_thesis22
+
+ratgraphs_alltcga <- rbind(thesisratio_1, thesisratio_2, thesisratio_3, thesisratio_4, thesisratio_5, thesisratio_6, thesisratio_7, thesisratio_8, thesisratio_9, thesisratio_10, thesisratio_11, thesisratio_12, thesisratio_13, thesisratio_14, thesisratio_15, thesisratio_16, thesisratio_17, thesisratio_18, thesisratio_19, thesisratio_20, thesisratio_21, thesisratio_22)
+
+rownames(ratgraphs_alltcga) <- c(1:22)
+
+```
+
+
+Will need to change this bit but is the graph code
+```{r}
+ratgraphs_alltets <- ratgraphs_alltcga[, which((names(ratgraphs_alltcga) %in% thesis_tet_railids)==TRUE)]
+ratgraphs_alltets$Ratio <- c(1:22)
+
+ratgraphs_alltets_long <- melt(ratgraphs_alltets, 
+                   id.vars = "Ratio")
+
+ratgraphs_alltetsRatio <- factor(c(ratgraphs_alltets_long$Ratio), levels = c(1:22))
+
+#the graph code
+ggplot(data = ratgraphs_alltets_long, aes(x = ratgraphs_alltetsRatio, y = log2(value), group = variable, color = variable)) +
+  geom_line() +
+  geom_point() +
+  scale_x_discrete("Breakpoint Exon", labels = c(1:22)) +
+  ylab("Count Ratio (log2)") +
+  scale_y_sqrt() +
+  theme(legend.position = "none") +
+  ylim(-5,15) +
+  ggtitle("All TCGA Thymoma Samples by Ratio")
+```
+
+
+for tet subtype do -3 to 15 as range and no labels
+
+
+```{r}
+subA_ratgraphs_alltets <- ratgraphs_alltets[, which((names(ratgraphs_alltets) %in% subtype_A_railids)==TRUE)]
+subAB_ratgraphs_alltets <- ratgraphs_alltets[, which((names(ratgraphs_alltets) %in% subtype_AB_railids)==TRUE)]
+subB1_ratgraphs_alltets <- ratgraphs_alltets[, which((names(ratgraphs_alltets) %in% subtype_B1_railids)==TRUE)]
+subB2_ratgraphs_alltets <- ratgraphs_alltets[, which((names(ratgraphs_alltets) %in% subtype_B2_railids)==TRUE)]
+subB3_ratgraphs_alltets <- ratgraphs_alltets[, which((names(ratgraphs_alltets) %in% subtype_B3_railids)==TRUE)]
+thycar_ratgraphs_alltets <- ratgraphs_alltets[, which((names(ratgraphs_alltets) %in% subt_thymic_carcin_railids)==TRUE)]
+```
+
+
+```{r}
+subA_ratgraphs_alltets$Ratio <- c(1:22)
+
+subA_ratgraphs_alltets_long <- melt(subA_ratgraphs_alltets, 
+                   id.vars = "Ratio")
+
+subA_ratgraphs_alltetsRatio <- factor(c(subA_ratgraphs_alltets_long$Ratio), levels = c(1:22))
+
+#the graph code
+subAthesisratio <- ggplot(data = subA_ratgraphs_alltets_long, aes(x = subA_ratgraphs_alltetsRatio, y = log2(value), group = variable, color = variable)) +
+  geom_line() +
+  geom_point() +
+  scale_x_discrete("Breakpoint Exon", labels = c(1:22)) +
+  ylab("Count Ratio (log2)") +
+  scale_y_sqrt() +
+  ylim(-3,15) +
+  ggtitle("Thymoma A")
+
+subAB_ratgraphs_alltets$Ratio <- c(1:22)
+
+subAB_ratgraphs_alltets_long <- melt(subAB_ratgraphs_alltets, 
+                   id.vars = "Ratio")
+
+subAB_ratgraphs_alltetsRatio <- factor(c(subAB_ratgraphs_alltets_long$Ratio), levels = c(1:22))
+
+#the graph code
+subABthesisratio <- ggplot(data = subAB_ratgraphs_alltets_long, aes(x = subAB_ratgraphs_alltetsRatio, y = log2(value), group = variable, color = variable)) +
+  geom_line() +
+  geom_point() +
+  scale_x_discrete("Breakpoint Exon", labels = c(1:22)) +
+  ylab("Count Ratio (log2)") +
+  scale_y_sqrt() +
+  ylim(-3,15) +
+  ggtitle("Thymoma AB")
+
+subB1_ratgraphs_alltets$Ratio <- c(1:22)
+
+subB1_ratgraphs_alltets_long <- melt(subB1_ratgraphs_alltets, 
+                   id.vars = "Ratio")
+
+subB1_ratgraphs_alltetsRatio <- factor(c(subB1_ratgraphs_alltets_long$Ratio), levels = c(1:22))
+
+#the graph code
+subB1thesisratio <- ggplot(data = subB1_ratgraphs_alltets_long, aes(x = subB1_ratgraphs_alltetsRatio, y = log2(value), group = variable, color = variable)) +
+  geom_line() +
+  geom_point() +
+  scale_x_discrete("Breakpoint Exon", labels = c(1:22)) +
+  ylab("Count Ratio (log2)") +
+  scale_y_sqrt() +
+  ylim(-3,15) +
+  ggtitle("Thymoma B1")
+
+
+subB2_ratgraphs_alltets$Ratio <- c(1:22)
+
+subB2_ratgraphs_alltets_long <- melt(subB2_ratgraphs_alltets, 
+                   id.vars = "Ratio")
+
+subB2_ratgraphs_alltetsRatio <- factor(c(subB2_ratgraphs_alltets_long$Ratio), levels = c(1:22))
+
+#the graph code
+subB2thesisratio <- ggplot(data = subB2_ratgraphs_alltets_long, aes(x = subB2_ratgraphs_alltetsRatio, y = log2(value), group = variable, color = variable)) +
+  geom_line() +
+  geom_point() +
+  scale_x_discrete("Breakpoint Exon", labels = c(1:22)) +
+  ylab("Count Ratio (log2)") +
+  scale_y_sqrt() +
+  ylim(-3,15) +
+  ggtitle("Thymoma B2")
+
+
+subB3_ratgraphs_alltets$Ratio <- c(1:22)
+
+subB3_ratgraphs_alltets_long <- melt(subB3_ratgraphs_alltets, 
+                   id.vars = "Ratio")
+
+subB3_ratgraphs_alltetsRatio <- factor(c(subB3_ratgraphs_alltets_long$Ratio), levels = c(1:22))
+
+#the graph code
+subB3thesisratio <- ggplot(data = subB3_ratgraphs_alltets_long, aes(x = subB3_ratgraphs_alltetsRatio, y = log2(value), group = variable, color = variable)) +
+  geom_line() +
+  geom_point() +
+  scale_x_discrete("Breakpoint Exon", labels = c(1:22)) +
+  ylab("Count Ratio (log2)") +
+  scale_y_sqrt() +
+  ylim(-3,15) +
+  ggtitle("Thymoma B3")
+
+
+thycar_ratgraphs_alltets$Ratio <- c(1:22)
+
+thycar_ratgraphs_alltets_long <- melt(thycar_ratgraphs_alltets, 
+                   id.vars = "Ratio")
+
+thycar_ratgraphs_alltetsRatio <- factor(c(thycar_ratgraphs_alltets_long$Ratio), levels = c(1:22))
+
+#the graph code
+thycarthesisratio <- ggplot(data = thycar_ratgraphs_alltets_long, aes(x = thycar_ratgraphs_alltetsRatio, y = log2(value), group = variable, color = variable)) +
+  geom_line() +
+  geom_point() +
+  scale_x_discrete("Breakpoint Exon", labels = c(1:22)) +
+  ylab("Count Ratio (log2)") +
+  scale_y_sqrt() +
+  ylim(-3,15) +
+  ggtitle("Thymic Carcinoma")
+```
+
+
+```{r}
+subAthesisratio + subABthesisratio + 
+subB1thesisratio + subB2thesisratio + 
+subB3thesisratio + thycarthesisratio
+```
+for the breakpoints: 
+tet_infinite_ids 
+```{r}
+infinite_tets_ratgraphs_alltets <- ratgraphs_alltets[, which((names(ratgraphs_alltets) %in% tet_infinite_ids)==TRUE)]
+
+infinite_tets_ratgraphs_alltets$Ratio <- c(1:22)
+
+infinite_tets_ratgraphs_alltets_long <- melt(infinite_tets_ratgraphs_alltets, 
+                   id.vars = "Ratio")
+
+infinite_tets_ratgraphs_alltetsRatio <- factor(c(infinite_tets_ratgraphs_alltets_long$Ratio), levels = c(1:22))
+
+#the graph code
+infinite_tetsthesisratio <- ggplot(data = infinite_tets_ratgraphs_alltets_long, aes(x = infinite_tets_ratgraphs_alltetsRatio, y = log2(value), group = variable, color = variable)) +
+  geom_line() +
+  geom_point() +
+  scale_x_discrete("Breakpoint Exon", labels = c(1:22)) +
+  ylab("Count Ratio (log2)") +
+  theme(legend.position = "none") +
+  scale_y_sqrt() +
+  ylim(0,15) +
+  ggtitle("TET Samples with Zero Counts for Exon 1")
+```
+tets_breakpoints_ids
+```{r}
+breakpoint_tets_ratgraphs_alltets <- ratgraphs_alltets[, which((names(ratgraphs_alltets) %in% tets_breakpoints_ids)==TRUE)]
+
+breakpoint_tets_ratgraphs_alltets$Ratio <- c(1:22)
+
+breakpoint_tets_ratgraphs_alltets_long <- melt(breakpoint_tets_ratgraphs_alltets, 
+                   id.vars = "Ratio")
+
+breakpoint_tets_ratgraphs_alltetsRatio <- factor(c(breakpoint_tets_ratgraphs_alltets_long$Ratio), levels = c(1:22))
+
+#the graph code
+breakpoint_tetsthesisratio <- ggplot(data = breakpoint_tets_ratgraphs_alltets_long, aes(x = breakpoint_tets_ratgraphs_alltetsRatio, y = log2(value), group = variable, color = variable)) +
+  geom_line() +
+  geom_point() +
+  scale_x_discrete("Breakpoint Exon", labels = c(1:22)) +
+  ylab("Count Ratio (log2)") +
+  theme(legend.position = "none") +
+  scale_y_sqrt() +
+  ylim(0,15) +
+  ggtitle("Breakpoint TETs")
+```
+
+```{r}
+infinite_tetsthesisratio + breakpoint_tetsthesisratio
+```
+

@@ -1,0 +1,51 @@
+---
+title: "exon_defintion_graph"
+output: html_notebook
+---
+
+```{r}
+library("tidyverse")
+library("ggplot2")
+```
+
+First let's create a matrix of PDGFRB reference WITH exons as a column
+
+```{r}
+pdgfrb.ref.exons <- matrix(c("exon1",150155845,150155397, "exon2",150137053,150137008, "exon3",150135878,150135555, "exon4",150135016,150134750, "exon5",150134008,150133881, "exon6",150133760,150133586, "exon7",150132942,150132750, "exon8",150132094,150131979, "exon9",150130662,150130539, "exon10",150129968,150129757, "exon11",150126614,150126520, "exon12",150125577,150125445, "exon13",150124831,150124727, "exon14",150124360,150124250, "exon15",150123201,150123042, "exon16",150122040,150121880, "exon17",150121322,150121204, "exon18",150121010,150120888, "exon19",150120123,150120012, "exon20",150119566,150119467, "exon21",150118852,150118747, "exon22",150117850,150117618, "exon23",150115946,150113839), ncol=3, byrow=TRUE)
+
+colnames(pdgfrb.ref.exons) <- c('exonname','exonstart', 'exonend')
+
+pdgfrb.ref.exons
+```
+
+And check recount3.pdgfrb
+
+```{r}
+recount3.pdgfrb <- tcga_rowranges[, c(1,2)]
+```
+Things to do:
+- get rid of the border
+- graph title
+- align the x axis in the middle
+- arrow on the right to indicate direction
+
+Hover text potential code from:
+https://plotly.com/r/hover-text-and-formatting/
+
+```{r}
+exon_graph <- plot(c(150155859, 150113839), c(0,10), type = "n", xlab = "", ylab = "", xaxt = "n", yaxt = "n", asp = 1)
+
+abline(h = 0, col = "gray60")
+rect(pdgfrb.ref.exons[,2], -1000, pdgfrb.ref.exons[,3], 1000, col = "pink", border = "pink")
+text(150145000,-800, "reference")
+axis(side = 1, at = c(150120000,150130000,150140000,150150000), lab = c("", "", "", ""), col = "grey", tck = 0.03, pos = 0)
+
+abline(h = 4500, col = "gray60")
+rect(recount3.pdgfrb[,1], 3500, recount3.pdgfrb[,2], 5500, col = "purple", border = "purple")
+text(150145000, 5300, "recount3")
+axis(side = 1, at = c(150120000,150130000,150140000,150150000), lab = c("150.12Mbp","150.13Mbp","150.14Mbp","150.15Mbp"), cex = 10, col = "grey", tck = -0.03, pos = 4500)
+
+
+```
+
+

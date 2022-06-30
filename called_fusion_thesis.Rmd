@@ -1,0 +1,72 @@
+---
+title: "Called Fusion Thesis"
+output: html_notebook
+---
+
+rail_ids:
+rail_61678
+rail_61756
+rail_63958
+rail_64525
+rail_64962
+rail_67142
+
+
+all_tcga_thesis_exons.df
+```{r}
+called_tcga_fusion_ids <- c("rail_61678", "rail_61756", "rail_63958", "rail_64525", "rail_64962", "rail_67142")
+
+called_tcga_fusion_info <- all_tcga_thesis_exons.df[row.names(all_tcga_thesis_exons.df) %in% called_tcga_fusion_ids,]
+called_tcga_fusion_info
+```
+
+```{r}
+cf_exongraphs_thesis <- tmc_can_exongraphs_thesis[, which((names(tmc_can_exongraphs_thesis) %in% called_tcga_fusion_ids)==TRUE)]
+
+cf_exongraphs_thesis$`Exon Number` <- c(1:23)
+cf_exongraphs_thesis_long <- melt(cf_exongraphs_thesis, 
+                   id.vars = "Exon Number")
+cf_exongraphs_thesis_long$`Exon Number` <- as.factor(cf_exongraphs_thesis_long$`Exon Number`)
+
+
+boxplotcancf <- ggplot(data = cf_exongraphs_thesis_long, aes(x = `Exon Number`, y = log2(value))) +
+  geom_boxplot() +
+  labs(title = "Counts by Canonical Exon for Known Fusion TCGA Samples", x = "Exon Number", y = "Number of Counts (log2)", color = "All kfs")
+
+linecancf <- ggplot(data = cf_exongraphs_thesis_long, aes(x = `Exon Number`, y = log2(value), group = variable, color = variable)) +
+  geom_line(size = 1) +
+  geom_point(size = 4) +
+  scale_x_discrete("Exon Number", labels = c(1:23)) +
+  ylab("Number of Counts (log2)") +
+  theme(legend.position = "none") +
+  scale_y_sqrt() +
+  ylim(2.5,15) 
+```
+
+
+```{r}
+cf_ratiographs_thesis <- ratgraphs_alltcga[, which((names(ratgraphs_alltcga) %in% called_tcga_fusion_ids)==TRUE)]
+
+cf_ratiographs_thesis$Ratio <- c(1:22)
+
+cf_ratiographs_thesis_long <- melt(cf_ratiographs_thesis, 
+                   id.vars = "Ratio")
+
+cf_ratiographs_thesisRatio <- factor(c(cf_ratiographs_thesis_long$Ratio), levels = c(1:22))
+
+#the graph code
+cfthesisratio <- ggplot(data = cf_ratiographs_thesis_long, aes(x = cf_ratiographs_thesisRatio, y = log2(value), group = variable, color = variable)) +
+  geom_line(size = 1) +
+  geom_point(size = 4) +
+  scale_x_discrete("Breakpoint Exon", labels = c(1:22)) +
+  ylab("Count Ratio (log2)") +
+  scale_y_sqrt() +
+  ylim(-2.5,7.5) 
+```
+
+
+
+```{r}
+linecancf + cfthesisratio 
+```
+

@@ -1,0 +1,177 @@
+---
+title: "exon_code_thesis"
+output: html_notebook
+---
+
+```{r}
+tmc_can_exon1 <- colSums(tmc_dataforthesis.cpm[44:45,])
+tmc_can_exon2 <- tmc_dataforthesis.cpm[39,]
+tmc_can_exon3 <- tmc_dataforthesis.cpm[38,]
+tmc_can_exon4 <- colSums(tmc_dataforthesis.cpm[36:37,])
+tmc_can_exon5 <- tmc_dataforthesis.cpm[33,]
+tmc_can_exon6 <- colSums(tmc_dataforthesis.cpm[31:32,])
+tmc_can_exon7 <- tmc_dataforthesis.cpm[30,]
+tmc_can_exon8 <- tmc_dataforthesis.cpm[29,]
+tmc_can_exon9 <- tmc_dataforthesis.cpm[28,]
+tmc_can_exon10 <- tmc_dataforthesis.cpm[27,]
+tmc_can_exon11 <- tmc_dataforthesis.cpm[26,]
+tmc_can_exon12 <- colSums(tmc_dataforthesis.cpm[24:25,])
+tmc_can_exon13 <- tmc_dataforthesis.cpm[23,]
+tmc_can_exon14 <- tmc_dataforthesis.cpm[21,]
+tmc_can_exon15 <- tmc_dataforthesis.cpm[19,]
+tmc_can_exon16 <- tmc_dataforthesis.cpm[14,]
+tmc_can_exon17 <- tmc_dataforthesis.cpm[13,]
+tmc_can_exon18 <- colSums(tmc_dataforthesis.cpm[11:12,])
+tmc_can_exon19 <- tmc_dataforthesis.cpm[10,]
+tmc_can_exon20 <- tmc_dataforthesis.cpm[9,]
+tmc_can_exon21 <- tmc_dataforthesis.cpm[8,]
+tmc_can_exon22 <- tmc_dataforthesis.cpm[7,]
+tmc_can_exon23 <- colSums(tmc_dataforthesis.cpm[1:6,])
+
+tmc_can_exongraphs_thesis <- rbind(tmc_can_exon1, tmc_can_exon2, tmc_can_exon3, tmc_can_exon4, tmc_can_exon5, tmc_can_exon6, tmc_can_exon7, tmc_can_exon8, tmc_can_exon9, tmc_can_exon10, tmc_can_exon11, tmc_can_exon12, tmc_can_exon13, tmc_can_exon14, tmc_can_exon15, tmc_can_exon16, tmc_can_exon17, tmc_can_exon18, tmc_can_exon19, tmc_can_exon20, tmc_can_exon21, tmc_can_exon22, tmc_can_exon23)
+
+rownames(tmc_can_exongraphs_thesis) <- c(1:23)
+tmc_can_exongraphs_thesis$`Exon Number` <- c(1:23)
+tmc_can_exongraphs_thesis
+```
+TET subtype
+
+```{r}
+subA_tmc_can_exongraphs_thesis <- tmc_can_exongraphs_thesis[, which((names(tmc_can_exongraphs_thesis) %in% subtype_A_railids)==TRUE)]
+subAB_tmc_can_exongraphs_thesis <- tmc_can_exongraphs_thesis[, which((names(tmc_can_exongraphs_thesis) %in% subtype_AB_railids)==TRUE)]
+subB1_tmc_can_exongraphs_thesis <- tmc_can_exongraphs_thesis[, which((names(tmc_can_exongraphs_thesis) %in% subtype_B1_railids)==TRUE)]
+subB2_tmc_can_exongraphs_thesis <- tmc_can_exongraphs_thesis[, which((names(tmc_can_exongraphs_thesis) %in% subtype_B2_railids)==TRUE)]
+subB3_tmc_can_exongraphs_thesis <- tmc_can_exongraphs_thesis[, which((names(tmc_can_exongraphs_thesis) %in% subtype_B3_railids)==TRUE)]
+thycar_tmc_can_exongraphs_thesis <- tmc_can_exongraphs_thesis[, which((names(tmc_can_exongraphs_thesis) %in% subt_thymic_carcin_railids)==TRUE)]
+```
+
+```{r}
+subA_tmc_can_exongraphs_thesis$`Exon Number` <- c(1:23)
+subA_tmc_can_exongraphs_thesis_long <- melt(subA_tmc_can_exongraphs_thesis, 
+                   id.vars = "Exon Number")
+subA_tmc_can_exongraphs_thesis_long$`Exon Number` <- as.factor(subA_tmc_can_exongraphs_thesis_long$`Exon Number`)
+
+
+boxplotcansubA <- ggplot(data = subA_tmc_can_exongraphs_thesis_long, aes(x = `Exon Number`, y = log2(value))) +
+  geom_boxplot() +
+  labs(title = "Counts by Canonical Exon for All TCGA subAs Samples", x = "Exon Number", y = "Number of Counts (log2)", color = "All subAs")
+
+linecansubA <- ggplot(data = subA_tmc_can_exongraphs_thesis_long, aes(x = `Exon Number`, y = log2(value), group = variable, color = variable)) +
+  geom_line() +
+  geom_point() +
+  scale_x_discrete("Exon Number", labels = c(1:23)) +
+  ylab("Counts (log2)") +
+  scale_y_sqrt() +
+  ylim(-5,15) +
+  ggtitle("Thymoma A")
+
+
+subAB_tmc_can_exongraphs_thesis$`Exon Number` <- c(1:23)
+subAB_tmc_can_exongraphs_thesis_long <- melt(subAB_tmc_can_exongraphs_thesis, 
+                   id.vars = "Exon Number")
+subAB_tmc_can_exongraphs_thesis_long$`Exon Number` <- as.factor(subAB_tmc_can_exongraphs_thesis_long$`Exon Number`)
+
+
+boxplotcansubAB <- ggplot(data = subAB_tmc_can_exongraphs_thesis_long, aes(x = `Exon Number`, y = log2(value))) +
+  geom_boxplot() +
+  labs(title = "Counts by Canonical Exon for All TCGA subABs Samples", x = "Exon Number", y = "Number of Counts (log2)", color = "All subABs")
+
+linecansubAB <- ggplot(data = subAB_tmc_can_exongraphs_thesis_long, aes(x = `Exon Number`, y = log2(value), group = variable, color = variable)) +
+  geom_line() +
+  geom_point() +
+  scale_x_discrete("Exon Number", labels = c(1:23)) +
+  ylab("Counts (log2)") +
+  scale_y_sqrt() +
+  ylim(-5,15) +
+  ggtitle("Thymoma AB")
+
+
+subB1_tmc_can_exongraphs_thesis$`Exon Number` <- c(1:23)
+subB1_tmc_can_exongraphs_thesis_long <- melt(subB1_tmc_can_exongraphs_thesis, 
+                   id.vars = "Exon Number")
+subB1_tmc_can_exongraphs_thesis_long$`Exon Number` <- as.factor(subB1_tmc_can_exongraphs_thesis_long$`Exon Number`)
+
+
+boxplotcansubB1 <- ggplot(data = subB1_tmc_can_exongraphs_thesis_long, aes(x = `Exon Number`, y = log2(value))) +
+  geom_boxplot() +
+  labs(title = "Counts by Canonical Exon for All TCGA subB1s Samples", x = "Exon Number", y = "Number of Counts (log2)", color = "All subB1s")
+
+linecansubB1 <- ggplot(data = subB1_tmc_can_exongraphs_thesis_long, aes(x = `Exon Number`, y = log2(value), group = variable, color = variable)) +
+  geom_line() +
+  geom_point() +
+  scale_x_discrete("Exon Number", labels = c(1:23)) +
+  ylab("Counts (log2)") +
+  scale_y_sqrt() +
+  ylim(-5,15) +
+  ggtitle("Thymoma B1")
+
+
+subB2_tmc_can_exongraphs_thesis$`Exon Number` <- c(1:23)
+subB2_tmc_can_exongraphs_thesis_long <- melt(subB2_tmc_can_exongraphs_thesis, 
+                   id.vars = "Exon Number")
+subB2_tmc_can_exongraphs_thesis_long$`Exon Number` <- as.factor(subB2_tmc_can_exongraphs_thesis_long$`Exon Number`)
+
+
+boxplotcansubB2 <- ggplot(data = subB2_tmc_can_exongraphs_thesis_long, aes(x = `Exon Number`, y = log2(value))) +
+  geom_boxplot() +
+  labs(title = "Counts by Canonical Exon for All TCGA subB2s Samples", x = "Exon Number", y = "Number of Counts (log2)", color = "All subB2s")
+
+linecansubB2 <- ggplot(data = subB2_tmc_can_exongraphs_thesis_long, aes(x = `Exon Number`, y = log2(value), group = variable, color = variable)) +
+  geom_line() +
+  geom_point() +
+  scale_x_discrete("Exon Number", labels = c(1:23)) +
+  ylab("Counts (log2)") +
+  scale_y_sqrt() +
+  ylim(-5,15) +
+  ggtitle("Thymoma B2")
+
+
+subB3_tmc_can_exongraphs_thesis$`Exon Number` <- c(1:23)
+subB3_tmc_can_exongraphs_thesis_long <- melt(subB3_tmc_can_exongraphs_thesis, 
+                   id.vars = "Exon Number")
+subB3_tmc_can_exongraphs_thesis_long$`Exon Number` <- as.factor(subB3_tmc_can_exongraphs_thesis_long$`Exon Number`)
+
+
+boxplotcansubB3 <- ggplot(data = subB3_tmc_can_exongraphs_thesis_long, aes(x = `Exon Number`, y = log2(value))) +
+  geom_boxplot() +
+  labs(title = "Counts by Canonical Exon for All TCGA subB3s Samples", x = "Exon Number", y = "Number of Counts (log2)", color = "All subB3s")
+
+linecansubB3 <- ggplot(data = subB3_tmc_can_exongraphs_thesis_long, aes(x = `Exon Number`, y = log2(value), group = variable, color = variable)) +
+  geom_line() +
+  geom_point() +
+  scale_x_discrete("Exon Number", labels = c(1:23)) +
+  ylab("Counts (log2)") +
+  scale_y_sqrt() +
+  ylim(-5,15) +
+  ggtitle("Thymoma B3")
+
+
+
+thycar_tmc_can_exongraphs_thesis$`Exon Number` <- c(1:23)
+thycar_tmc_can_exongraphs_thesis_long <- melt(thycar_tmc_can_exongraphs_thesis, 
+                   id.vars = "Exon Number")
+thycar_tmc_can_exongraphs_thesis_long$`Exon Number` <- as.factor(thycar_tmc_can_exongraphs_thesis_long$`Exon Number`)
+
+
+boxplotcanthycar <- ggplot(data = thycar_tmc_can_exongraphs_thesis_long, aes(x = `Exon Number`, y = log2(value))) +
+  geom_boxplot() +
+  labs(title = "Counts by Canonical Exon for All TCGA thycars Samples", x = "Exon Number", y = "Number of Counts (log2)", color = "All thycars")
+
+linecanthycar <- ggplot(data = thycar_tmc_can_exongraphs_thesis_long, aes(x = `Exon Number`, y = log2(value), group = variable, color = variable)) +
+  geom_line() +
+  geom_point() +
+  scale_x_discrete("Exon Number", labels = c(1:23)) +
+  ylab("Counts (log2)") +
+  scale_y_sqrt() +
+  ylim(-5,15) +
+  ggtitle("Thymic Carcinoma")
+```
+
+
+```{r}
+linecansubA + linecansubAB + 
+linecansubB1 + linecansubB2 +
+linecansubB3 + linecanthycar
+```
+
+

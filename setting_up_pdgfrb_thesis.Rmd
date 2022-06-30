@@ -1,0 +1,89 @@
+---
+title: "Setting Up PDGFRB Thesis"
+output: html_notebook
+---
+
+All packages used:
+```{r}
+library(recount3)
+library(snapcount)
+library(reshape2)
+library(ggplot2)
+library(patchwork)
+library(dplyr)
+```
+
+Setting up and normalisation of counts:
+```{r}
+sb <- QueryBuilder(compilation = "tcga", regions = "pdgfrb")
+pdgfrb.all.exons.tcga <- query_exon(sb)
+all.counts.tcga <- as.matrix(assays(pdgfrb.all.exons.tcga)$counts)
+all.counts.tcga.df <- as.data.frame(all.counts.tcga)
+
+all_tcga_exons1to8 <- colSums(all.counts.tcga.df[c(29:33, 36:39, 44:45),])/1.712
+all_tcga_exons9to23 <- colSums(all.counts.tcga.df[c(1:14,19,21,23:28),])/4.004
+
+all_tcga_thesis_exons <- cbind(all_tcga_exons1to8, all_tcga_exons9to23)
+all_tcga_thesis_exons.df <- as.data.frame(all_tcga_thesis_exons)
+all_tcga_thesis_exons.df$Ratio <- all_tcga_thesis_exons.df[,2]/all_tcga_thesis_exons.df[,1]
+all_tcga_thesis_exons.df$cancer <- pdgfrb.all.exons.tcga@colData@listData[["cgc_file_disease_type"]]
+all_tcga_thesis_exons.df$'TCGA ID' <- pdgfrb.all.exons.tcga@colData@listData[["gdc_cases.samples.submitter_id"]]
+all_tcga_thesis_exons.df$UCSC <- pdgfrb.all.exons.tcga@colData@listData[["gdc_file_id"]]
+all_tcga_thesis_exons.df$tmc <- pdgfrb.all.exons.tcga@colData@listData[["mapped_read_count"]]
+all_tcga_thesis_exons.df[order(all_tcga_thesis_exons.df$Ratio, decreasing = TRUE),]
+```
+
+```{r}
+bp_all.counts.tcga_thesis <- all.counts.tcga.df/tcga_rowranges$width
+kbp_all.counts.tcga_thesis <- bp_all.counts.tcga_thesis*1000
+```
+
+
+```{r}
+tmc_dataforthesis <- mapply('/', kbp_all.counts.tcga_thesis, pdgfrb.all.exons.tcga@colData@listData[["mapped_read_count"]])
+tmc_dataforthesis.df <- as.data.frame(tmc_dataforthesis)
+#multiply by a million for cpm
+tmc_dataforthesis.cpm <- tmc_dataforthesis.df*1000000
+tmc_dataforthesis.cpm
+```
+Expression counts
+```{r}
+thesis_total_expression <- colSums(tmc_dataforthesis.cpm[c(1:45),])
+thesis_total_expression.df <- as.data.frame(thesis_total_expression)
+thesis_total_expression.df$rail_id <- rownames(thesis_total_expression.df)
+
+tets_total_expression <- thesis_total_expression.df[row.names(thesis_total_expression.df) %in% thymoma_ids_thesis,]
+```
+
+
+Also establish rail_ids for TETs:
+```{r}
+thymoma_tcga_thesis_exons.df <- all_tcga_thesis_exons.df[all_tcga_thesis_exons.df$cancer == "Thymoma",]
+thymoma_ids_thesis <- rownames(thymoma_tcga_thesis_exons.df)
+thymoma_ids_thesis
+```
+
+TET type ids:
+```{r}
+subtype_A_railids <- c("rail_62047", "rail_62636", "rail_62668", "rail_62879", "rail_63910", "rail_64122", "rail_65426", "rail_66339", "rail_66905", "rail_66970", "rail_67559", "rail_67664", "rail_68693", "rail_69344", "rail_70246", "rail_70275", "rail_70864")
+subtype_AB_railids <- c("rail_60165", "rail_61348", "rail_61671", "rail_61882", "rail_62655", "rail_63020", "rail_63126", "rail_63161", "rail_63253", "rail_63386", "rail_64080", "rail_64341", "rail_65176", "rail_65259", "rail_65535", "rail_65718", "rail_66042", "rail_66138", "rail_66171", "rail_66268", "rail_66695", "rail_66984", "rail_67004", "rail_67044", "rail_67084", "rail_67922", "rail_68215", "rail_69138", "rail_69272", "rail_69722", "rail_69914", "rail_70044", "rail_70166", "rail_70228", "rail_71017")
+subtype_B1_railids <- c("rail_60956", "rail_61474", "rail_61988", "rail_63185", "rail_65131", "rail_65273", "rail_65965", "rail_67409", "rail_67438", "rail_67606", "rail_67643", "rail_68042", "rail_68424", "rail_69848", "rail_70049")
+subtype_B2_railids <- c("rail_59865", "rail_59888", "rail_60759", "rail_60945", "rail_61509", "rail_61637", "rail_61642", "rail_61767", "rail_61894", "rail_62070", "rail_62513", "rail_62741", "rail_62749", "rail_62910", "rail_62996", "rail_63226", "rail_63242", "rail_63360", "rail_64020", "rail_65923", "rail_66108", "rail_66854", "rail_67588", "rail_67896", "rail_69008", "rail_69028", "rail_69310", "rail_70020", "rail_70434", "rail_70464", "rail_70572", "rail_70996")
+subtype_B3_railids <- c("rail_61463", "rail_63171", "rail_63219", "rail_65171", "rail_65295", "rail_65702", "rail_66708", "rail_66799", "rail_67217", "rail_67710", "rail_68771", "rail_70414")
+subt_thymic_carcin_railids <- c("rail_61730", "rail_62098", "rail_62395", "rail_62707", "rail_65727", "rail_67007", "rail_67381", "rail_68233", "rail_69091", "rail_70225", "rail_70281")
+```
+
+Breakpoint and infinite ids:
+```{r}
+tet_infinite_ids <- c("rail_61894", "rail_65176", "rail_65259", "rail_66108", "rail_66138", "rail_67606", "rail_68215", "rail_68424", "rail_69848", "rail_71017")
+
+tets_breakpoints_ids <- c("rail_62668", "rail_63126", "rail_62655", "rail_61882", "rail_67004", "rail_66984", "rail_60956", "rail_61509", "rail_62741", "rail_62910", "rail_61637", "rail_66854",  "rail_70572", "rail_66799", "rail_65171", "rail_66708", "rail_62707")
+```
+
+
+
+```{r}
+sessionInfo()
+citation("recount3")
+```
+

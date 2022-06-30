@@ -1,0 +1,9 @@
+---
+title: "citation_thesis"
+output: html_notebook
+---
+
+```{r}
+sessionInfo()
+```
+
