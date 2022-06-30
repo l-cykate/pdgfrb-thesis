@@ -2,7 +2,9 @@
 Code for 2022 Semester One Honours Thesis
 
 
-## File Setting Up PDGFRB contains the initial code used to obtain _PDGFRB_ count data, as well as TCGA metadata.
+## Setting Up _PDGFRB_
+
+Contains the initial code used to obtain _PDGFRB_ count data, as well as TCGA metadata.
 
 A preliminary dataframe is established with all 11,284 TCGA samples and selected metadata including:
 - Sum of counts for canonical exons 1-8 (normalised by cumulative exon length 1.714kbp)
