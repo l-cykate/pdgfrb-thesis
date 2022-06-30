@@ -11,6 +11,7 @@ library(reshape2)
 library(ggplot2)
 library(patchwork)
 library(dplyr)
+library(tidyverse)
 ```
 
 Setting up and normalisation of counts:
@@ -34,6 +35,12 @@ all_tcga_thesis_exons.df[order(all_tcga_thesis_exons.df$Ratio, decreasing = TRUE
 ```
 
 ```{r}
+tcga.metadata <- rowRanges(pdgfrb.all.exons.tcga)
+tcga_rowranges <- as.data.frame(tcga.metadata@ranges)
+```
+
+
+```{r}
 bp_all.counts.tcga_thesis <- all.counts.tcga.df/tcga_rowranges$width
 kbp_all.counts.tcga_thesis <- bp_all.counts.tcga_thesis*1000
 ```
@@ -51,8 +58,6 @@ Expression counts
 thesis_total_expression <- colSums(tmc_dataforthesis.cpm[c(1:45),])
 thesis_total_expression.df <- as.data.frame(thesis_total_expression)
 thesis_total_expression.df$rail_id <- rownames(thesis_total_expression.df)
-
-tets_total_expression <- thesis_total_expression.df[row.names(thesis_total_expression.df) %in% thymoma_ids_thesis,]
 ```
 
 
@@ -61,6 +66,8 @@ Also establish rail_ids for TETs:
 thymoma_tcga_thesis_exons.df <- all_tcga_thesis_exons.df[all_tcga_thesis_exons.df$cancer == "Thymoma",]
 thymoma_ids_thesis <- rownames(thymoma_tcga_thesis_exons.df)
 thymoma_ids_thesis
+
+tets_total_expression <- thesis_total_expression.df[row.names(thesis_total_expression.df) %in% thymoma_ids_thesis,]
 ```
 
 TET type ids:
@@ -78,12 +85,5 @@ Breakpoint and infinite ids:
 tet_infinite_ids <- c("rail_61894", "rail_65176", "rail_65259", "rail_66108", "rail_66138", "rail_67606", "rail_68215", "rail_68424", "rail_69848", "rail_71017")
 
 tets_breakpoints_ids <- c("rail_62668", "rail_63126", "rail_62655", "rail_61882", "rail_67004", "rail_66984", "rail_60956", "rail_61509", "rail_62741", "rail_62910", "rail_61637", "rail_66854",  "rail_70572", "rail_66799", "rail_65171", "rail_66708", "rail_62707")
-```
-
-
-
-```{r}
-sessionInfo()
-citation("recount3")
 ```
 

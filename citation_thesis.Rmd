@@ -7,3 +7,13 @@ output: html_notebook
 sessionInfo()
 ```
 
+```{r}
+citation("recount3")
+citation("dplyr")
+citation("reshape2")
+citation("ggplot2")
+citation("patchwork")
+citation("snapcount")
+citation("tidyverse")
+```
+

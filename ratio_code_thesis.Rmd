@@ -103,7 +103,7 @@ rownames(ratgraphs_alltcga) <- c(1:22)
 
 Will need to change this bit but is the graph code
 ```{r}
-ratgraphs_alltets <- ratgraphs_alltcga[, which((names(ratgraphs_alltcga) %in% thesis_tet_railids)==TRUE)]
+ratgraphs_alltets <- ratgraphs_alltcga[, which((names(ratgraphs_alltcga) %in% thymoma_ids_thesis)==TRUE)]
 ratgraphs_alltets$Ratio <- c(1:22)
 
 ratgraphs_alltets_long <- melt(ratgraphs_alltets, 
